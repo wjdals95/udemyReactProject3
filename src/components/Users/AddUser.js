@@ -8,13 +8,22 @@ import classes from "./AddUser.module.css";
 const AddUser = (props) => {
   const [enteredUsername, setEnteredUseername] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
+  const [error, setError] = useState();
 
   const addUserHandler = (event) => {
     event.preventDefault();
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
+      setError({
+        title: "Invalid input",
+        message: "Please enter a vaild name and age (non-empty values).",
+      });
       return;
     }
     if (+enteredAge < 0) {
+      setError({
+        title: "Invalid age",
+        message: "Please enter a valid age (> 0).",
+      });
       return;
     }
     props.onAddUser(enteredUsername, enteredAge);
@@ -27,10 +36,18 @@ const AddUser = (props) => {
   const ageChangeHandler = (event) => {
     setEnteredAge(event.target.value);
   };
-
+  const errorHandler = () => {
+    setError(null);
+  };
   return (
     <div>
-      <ErrorModal title="An Error ocurred!" message="Something went wrong!" />
+      {error && (
+        <ErrorModal
+          title={error.title}
+          message={error.message}
+          onConfirm={errorHandler}
+        />
+      )}
       // 사용자 임의 컴포넌트이므로 Card컴포넌트에 가서 className의 프로퍼티를
       설정해야한다.
       <Card className={classes.input}>
