@@ -35,8 +35,8 @@ const AddUser = (props) => {
     }
     props.onAddUser(enteredName, enteredUserAge);
     //Ref를 사용하여 입력값 초기화하기
-    nameInputRef.current.value = '';
-    ageInputRef.current.value = '';
+    nameInputRef.current.value = "";
+    ageInputRef.current.value = "";
     // setEnteredUseername("");
     // setEnteredAge("");
   };
@@ -64,8 +64,7 @@ const AddUser = (props) => {
           onConfirm={errorHandler}
         />
       )}
-      // 사용자 임의 컴포넌트이므로 Card컴포넌트에 가서 className의 프로퍼티를
-      설정해야한다.
+       {/* 사용자 임의 컴포넌트이므로 Card컴포넌트에 가서 className의 프로퍼티를 설정해야한다. */}
       <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
           <label htmlFor="username">Username</label>
