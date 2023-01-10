@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 import ErrorModal from "../UI/ErrorModal";
@@ -42,7 +42,11 @@ const AddUser = (props) => {
   return (
     // div태그로 감싸면 나중엔 div가 많아질수 있고 그러한 이유 때문에 랜더링이 느려질 수 있으므로 Wrapper라는 컴포넌트를 만들어 그 안에는
     // 인접한 태그들을 부르는 props.children 만 리턴해서 div는 줄이고 리액트 조건은 충족시키며 가벼워지게 만들 수 있다.
-    <Wrapper> 
+    // <Wrapper>
+
+    //div 태그나 Wrapper 컴포넌트를 만들어서 감싸는대신 리액트에서 제공하는 Fragment를 사용하는것이 자주 쓰이는 방법이다.
+    //<React.Fragment> or 리액트에서 Fragment를 추가한후 <Fragment>만 사용가능하며, <></>로도 가능하다.
+    <Fragment>
       {error && (
         <ErrorModal
           title={error.title}
@@ -71,7 +75,7 @@ const AddUser = (props) => {
           <Button type="submit">Add User</Button>
         </form>
       </Card>
-    </Wrapper>
+    </Fragment>
   );
 };
 
